@@ -5,7 +5,7 @@
 + calculatorResult.jsp <br/>
 
 # calculator2
-자항 우항에 들어가는 정수 모두 자릿수 제한이 없고, 연달아 사칙연산이 가능한 계산기 <br/>
+자항 우항에 들어가는 정수 모두 자릿수 제한이 없고, 연달아 사칙연산이 가능한 계산기 (int범위 내의 연ㅇ산만 가능)<br/>
 + CalculatorServlet2 <br/>
 + calculatorResult2.jsp <br/>
 
