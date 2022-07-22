@@ -18,13 +18,4 @@
     <url-pattern>/score2</url-pattern>
   </servlet-mapping>
   
-<!--   <servlet> -->
-<!--     <servlet-name>calculator</servlet-name> -->
-<!--     <servlet-class>com.jsp.servlet.CalculatorServlet</servlet-class> -->
-<!--   </servlet> -->
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>calculator</servlet-name> -->
-<!--     <url-pattern>/calculator -->
-<!--     </url-pattern> -->
-<!--   </servlet-mapping> -->
 </web-app>
