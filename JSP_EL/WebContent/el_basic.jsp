@@ -50,7 +50,7 @@
 		<li>아이디 : ${member.idnPwd }</li>
 		
 		<li>Map : ${map.get("key") }</li>
-		<li>Map : ${map.key }</li>
+		<li>Map : $ {map.key }</li>
 		
 		<li>List : ${list.get(0) }</li>
 		<li>List : ${list[0]}</li>
