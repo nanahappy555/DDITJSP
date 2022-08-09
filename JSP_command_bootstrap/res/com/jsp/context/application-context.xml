@@ -1,0 +1,25 @@
+<beans>
+	<!-- datasource -->
+	<bean id="sqlSessionFactory"
+		  class="com.jsp.datasource.OracleMybatisSqlSessionFactory" />
+		  
+	<!-- Repository -->
+	<bean id="memberDAO" class="com.jsp.dao.MemberDAOImpl" >
+		<property name="sqlSessionFactory" ref-value="sqlSessionFactory" />
+	</bean>
+			
+	<!-- Service -->
+	<bean id="memberService" class="com.jsp.service.MemberServiceImpl" >
+		<property name="memberDAO" ref-value="memberDAO" /> 
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
