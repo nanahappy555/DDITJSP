@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class HttpRequestParameterAdapter {
 
-	public static <T> T execute(HttpServletRequest request, Class<T> className) throws Exception {
+	public static <T>T execute(HttpServletRequest request, Class<T> className) throws Exception {
 		//의존성 확인 및 조립
 		Method[] methods = className.getMethods();
 

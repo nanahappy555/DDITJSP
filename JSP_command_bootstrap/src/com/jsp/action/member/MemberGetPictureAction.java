@@ -1,18 +1,16 @@
 package com.jsp.action.member;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jsp.action.Action;
-import com.jsp.command.MemberRegistCommand;
-import com.jsp.controller.HttpRequestParameterAdapter;
+import com.jsp.controller.FileDownloadResolver;
+import com.jsp.controller.GetUploadPath;
 import com.jsp.dto.MemberVO;
 import com.jsp.service.MemberService;
 
-public class MemberRegistAction implements Action {
-	
+public class MemberGetPictureAction implements Action {
+
 	private MemberService memberService;
 	public void setSearchMemberService(MemberService memberService) {
 		this.memberService=memberService;
@@ -20,30 +18,31 @@ public class MemberRegistAction implements Action {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//화면
-		String url="/member/regist_success";
+		String url=null;
 		
-		//입력
+		String id = request.getParameter("id");
+		
 		try {
+			MemberVO member = memberService.getMember(id);
 			
-			request.setCharacterEncoding("utf-8");
+			String fileName = member.getPicture();		
+			String savedPath = GetUploadPath.getUploadPath("member.picture.upload");	
 			
-			MemberRegistCommand command =HttpRequestParameterAdapter.execute(request,
-							MemberRegistCommand.class );
-			MemberVO member = command.toMemberVO();
-					
-			//처리
-			memberService.regist(member);
-		
+			
+			FileDownloadResolver.sendFile(fileName,savedPath,request,response);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
-			//exception 처리.....
-			url="/member/regist_fail";
+			response.sendError(response.SC_INTERNAL_SERVER_ERROR);
 		}
+		
 		return url;
 	}
 
 }
+
+
+
 
 
 

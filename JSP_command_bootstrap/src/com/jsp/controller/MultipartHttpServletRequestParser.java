@@ -18,7 +18,7 @@ import com.jsp.exception.NotMultipartFormDataException;
 
 public class MultipartHttpServletRequestParser {
 	
-	private Map paramString= new HashMap<String, List<String>>();
+	private Map<String, List<String>> paramString= new HashMap<String, List<String>>();
 	private Map<String, List<FileItem>> paramFile= new HashMap<String, List<FileItem>>();
 	
 	
