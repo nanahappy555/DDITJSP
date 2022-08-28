@@ -14,7 +14,7 @@ public class TestListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent event)  { 
          ServletContext ctx = event.getServletContext();
          String message=ctx.getInitParameter("message");
-         System.out.println(message);
+         System.out.println(message); 
     }
 	
 }
