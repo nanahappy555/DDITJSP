@@ -4,27 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Starter</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-
-
 
 <div>
   	 <section class="content-header">
@@ -245,81 +224,73 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		      alert("현재 사진 업로드가 불가합니다.\n 관리자에게 연락바랍니다.");
 		    }
 		});
-		
 	}
 	
-	var checkedID = ""; //중복체크 했는지
+	
+	var checkedID ="";
 	function idCheck_go(){
 		//alert("idcheck btn click");
-		var input_ID = $('input[name="id"]');
-		
+		var input_ID=$('input[name="id"]');
 		if(!input_ID.val()){
-			alert("아이디를 입력하시오");
-			input_ID.focus();
-			return;
+	       alert("아이디를 입력하시오");
+	       input_ID.focus();
+	       return;
 		}
-		
 		$.ajax({
 			url : "idCheck.do?id="+input_ID.val().trim(),
-			method : "get",
+			method : "get",	
 			success : function(result){
 				if(result.toUpperCase() == "DUPLICATED"){
-					alert("중복된 아이디 입니다.");
-					$('input[name="id"]').focus();
+			      alert("중복된 아이디 입니다.");
+			      $('input[name="id"]').focus();
 				}else{
-					alert("사용가능한 아이디입니다.");
-					checkID=input_ID.val().trim();
-					$('input[name="id"]').val(input_ID.val().trim());
-				}
+	              alert("사용가능한 아이디 입니다.");
+	              checkedID=input_ID.val().trim();
+	              $('input[name="id"]').val(input_ID.val().trim());	             
+	           } 
+	           
 			},
-			error : function(error){
-				alert("시스템장애로 가입이 불가합니다.");
-			}
+			error:function(error){
+		       alert("시스템장애로 가입이 불가합니다.");
+		    }
 		});
+		
 	}
 	
 	function regist_go(){
-		alert("regist btn click");
-		var uploadCheck = $('input[name="checkUpload"]').val();
+		//alert("regist btn click");
+		var uploadCheck = $('input[name="checkUpload"]').val();   
 		if(uploadCheck=="0"){
-			alert("사진업로드는 필수입니다.");
-			return;
+		  alert("사진업로드는 필수 입니다");      
+		  return;
 		}
 		if(!$('input[name="id"]').val()){
-			alert("아이디는 필수입니다.");
-			return;
+		  alert("아이디는 필수입니다.");
+		  return;
 		}
-		if($('input[name="id"]').val()!=checkedID){
-			alert("아이디는 중복 확인이 필요합니다.");
-			return;
+	    if($('input[name="id"]').val()!=checkedID){
+	      alert("아이디는 중복 확인이 필요합니다.");
+	      return;
+	    }
+	    if(!$('input[name="pwd"]').val()){
+		  alert("패스워드는 필수입니다.");
+		  return;
+	    }
+	    if(!$('input[name="name"]').val()){
+		  alert("이름은 필수입니다.");
+		  return;
 		}
-		if(!$('input[name="pwd"]').val()){
-			alert("패스워드는 필수입니다.");
-			return;
-		}
-		if(!$('input[name="name"]').val()){
-			alert("이름은 필수입니다.");
-			return;
-		}
-		
-		var form = $('form[role="form"]');
+	    
+	    var form = $('form[role="form"]');
 		form.attr({"method":"post",
 		     	   "action":"regist.do"
 		   		  });	   
 		form.submit();
+		   
+		
 	}
 </script>
-  
-<!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js" ></script>
-<!-- Bootstrap 4 -->
-<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/adminlte.min.js"></script>
-</body>
-</html>
-    
-
+ 
 
 
 
